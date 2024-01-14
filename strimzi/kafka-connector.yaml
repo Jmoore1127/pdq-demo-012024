@@ -1,0 +1,22 @@
+apiVersion: kafka.strimzi.io/v1beta2
+kind: KafkaConnector
+metadata:
+  name: my-source
+  labels:
+    strimzi.io/cluster: my-connect-cluster
+spec:
+  class: io.debezium.connector.postgresql.PostgresConnector
+  config:
+    plugin.name: pgoutput
+    database.server.name: test-postgres #unique identifier for this postgres db
+    key.converter: org.apache.kafka.connect.json.JsonConverter
+    key.converter.schemas.enable: 'false'
+    value.converter: org.apache.kafka.connect.json.JsonConverter
+    value.converter.schemas.enable: 'false'
+    database.hostname: postgres-svc.postgres.svc.cluster.local
+    database.port: 5432
+    database.dbname: postgres
+    database.user: postgres
+    database.password: postgres
+    topic.prefix: postgres
+    table.include.list: public.test

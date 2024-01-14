@@ -1,0 +1,11 @@
+yamlApplicationConfig:
+  kafka:
+    clusters:
+      - name: my-cluster
+        bootstrapServers: my-cluster-kafka-brokers:9092
+  auth:
+    type: disabled
+  management:
+    health:
+      ldap:
+        enabled: false
